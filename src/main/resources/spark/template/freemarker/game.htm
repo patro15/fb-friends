@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "header.htm">
+	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+	<!--<link rel="stylesheet" type="text/css" href="../../../public/stylesheets/main.css" />
+	<script src="../../../public/js_lib/jquery-2.2.3.js"></script>
+	<script src="../../../public/js_lib/bootstrap.min.js"></script>
+	<script src="../../../public/js_lib/facebook_sdk.js"></script>-->
+</head>
+<body>
+	<script src="js_src/config.js">	 </script>
+	<script src="js_src/res.js">	 </script>
+	<script src="js_src/load.js">	 </script>
+	<script src="js_src/init.js">	 </script>
+	<script src="js_src/fb_load.js"> </script>
+	<script src="js_src/control.js"> </script>
+	<script src="js_src/rest_api.js"></script>
+	<!--<script src="js_src/rest_api_tests.js"></script>-->
+	<script src="js_src/game.js">	 </script>
+	<script src="js_src/main.js">	 </script>
+
+	<#include "nav.htm">
+
+	<!--<script src="../../../public/js_src/config.js">	 </script>
+	<script src="../../../public/js_src/res.js">	 </script>
+	<script src="../../../public/js_src/load.js">	 </script>
+	<script src="../../../public/js_src/init.js">	 </script>
+	<script src="../../../public/js_src/fb_load.js"> </script>
+	<script src="../../../public/js_src/control.js"> </script>
+	<script src="../../../public/js_src/game.js">	 </script>
+	<script src="../../../public/js_src/main.js">	 </script>-->
+
+	<div class="container">
+
+		<!-- Not eligible modal -->
+		<div class="modal fade" id="cannotPlayModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Cannot play game</h4>
+					</div>
+					<div class="modal-body">
+						<p id="modalMessage">We are sorry, but you cannot play this game, because you have not enough friends with photos or our app cannot access them, because they newer played this game. If so you can inivte them.</p>
+					</div>
+					<br/>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="loading_panel" class="panel panel-default">
+			<div id="loading_panel_header" class="panel-heading">Loading</div>
+			<div id="loading_panel_body" class="panel-body">Wait until we load necessary data to start game</div>
+		</div>
+
+		<div id="intro_panel" class="panel panel-default" style="display: none">
+			<div id="intro_panel_header" class="panel-heading">Introduction</div>
+			<div id="intro_panel_body" class="panel-body">
+				<span id="game_intro_msg"></span><br/><br />
+				<button onclick="start_game()" type="button" class="btn btn-success btn-block" id="start_game">Start</button>
+			</div>
+		</div>
+
+		<div id="game_panel" class="panel panel-default" style="display: none">
+			<ul id="panel_header" class="header">
+				<li>Part <span id="part_num">1</span></li>
+				<li>Question: <span id="question_no">1</span> / <span id="question_num">-</span></li>
+				<li>Time left: <span id="time_left">0</span> s</li>
+				<li>Answered correctly: <span id="num_correct">0</span> (<span id="percent_correct">0 %</span>)</li>
+			</ul>
+			<div id="part1_panel_body" class="panel-body">
+				<img id="part1_img"/>
+				<input id="user_input_part1" type="text" placeholder="Full name"/><br /><br />
+				<button id="next_part1" onclick="question_finished()" type="button" class="btn btn-success btn-block">Next</button>
+			</div>
+			<div id="part2_panel_body" class="panel-body">
+				<img id="part2_img1" />
+				<img id="part2_img2" />
+				<br /><br />
+				<div class="btn-group btn-block">
+					<button id="yes_part2" onclick="question_finished(true )" type="button" class="btn btn-success btn-lg btn-block">Yes</button>
+					<button id="no_part2" onclick="question_finished(false)" type="button" class="btn btn-danger  btn-lg btn-block">No </button>
+				</div>
+			</div>
+		</div>
+		<div id="finish_panel" class="panel panel-default" style="display: none">
+			<div id="finish_panel_header" class="panel-heading">Game finished</div>
+			<div id="finish_panel_body" class="panel-body">
+				You have finished the game. See your results below.<br />
+				Summary:<br />
+				<span id="summary"></span><br />
+				<span id="summary_table"></span><br />
+				<div id="alert_success" class="alert alert-success" style="display: none">
+					<a class="close" onclick="$('#alert_success').hide()" aria-label="close">&times;</a>
+					<span id="alert_success_text"></span>
+				</div>
+				<div id="alert_error" class="alert alert-danger" style="display: none">
+					<a class="close" onclick="$('#alert_error').hide()" aria-label="close">&times;</a>
+					<span id="alert_error_text"></span>
+				</div>
+				<div id="rank_form"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

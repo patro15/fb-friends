@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "header.htm">
+	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+</head>
+<body>
+	<script src="js_src/res.js">	 </script>
+	<script src="js_src/rank.js">	 </script>
+	<#include "nav.htm">
+
+	<div class="container">
+		<div id="loading_panel" class="panel panel-default">
+			<div id="loading_panel_header" class="panel-heading">Loading</div>
+			<div id="loading_panel_body" class="panel-body">Wait until we load necessary data from server</div>
+		</div>
+
+		<div id="error_panel" class="panel panel-default" style="display: none">
+			<div id="error_panel_header" class="panel-heading">Error</div>
+			<div id="error_panel_body" class="panel-body">Error occurred when loading data from server</div>
+		</div>
+
+		<div id="rank_panel" style="display: none">
+			<table id="rank_table" class="table table-bordered">
+				<thead>
+					<tr>
+						<td rowspan="2">No.</td>
+						<td rowspan="2">Name</td>
+						<td rowspan="2">Date</td>
+						<td colspan="2">Questions answered</td>
+						<td rowspan="2">Correctness (%)</td>
+					</tr>
+					<tr>
+						<td>Part 1</td>
+						<td>Part 2</td>
+					</tr>
+				</thead>
+				<tbody id="rank_table_body">					
+						<!-- Here auto-generated body by script -->
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<script src="js_lib/jquery-2.2.3.js"></script>
+<script src="js_lib/bootstrap.min.js"></script>
+<script src="js_lib/facebook_sdk.js"></script>
+
+<script src="js_src/res.js"></script>
+<script>
+    function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        if (response.status === 'connected') {              // logged into app
+            onLoggedIn();
+        } else if (response.status === 'not_authorized') {  // not logged into app
+            $("#status").text("Not logged in ");
+            onLoggedIn();
+        } else {                                             // not logged into facebook
+            $("#status").text("Not logged in ");
+        }
+    }
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+    }
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '196163634103968',
+            cookie: true,  // enable cookies to allow the server to access the session
+            xfbml: true,  // parse social plugins on this page
+            version: 'v2.5' // use graph api version 2.5
+        });
+
+        checkLoginState();
+
+    };
+
+    // Load the SDK asynchronously
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if(d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function addPhoto(id, user_id) {
+        FB.api(
+            "/" + user_id + "/picture",
+            onResponse((response) => {
+                $("#" + id).empty();
+                var img = $("<img>");
+                img.attr('src', response.data.url);
+                $("#" + id).append(img);
+            }, 'nav: addPhoto')
+        );
+    }
+
+    function showName(id, user_id, prefix) {
+        FB.api(
+            "/" + user_id,
+            onResponse((response) => {
+                $("#" + id).html(prefix + response.name);
+            }, 'nav: showName')
+        );
+    }
+
+    function showProfilePhoto() {
+        addPhoto("profile_photo", "me");
+    }
+
+    function onLoggedIn() {
+        showProfilePhoto();
+        showName("status", "me", "Logged in as<br>");
+        console.log('onLoggedIn');
+        onLoadCallback();
+    }
+
+</script>
+
+<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li id="nav_home" class="active">
+                <a href="/"><img src="/icons/home.png" /> Home</a>
+            </li>
+            <li id="nav_game">
+                <a href="/game"><img class="inverted" src="/icons/gamepad_24.png" /> Game</a>
+            </li>
+            <li id="nav_rank">
+                <a href="/ranking"><img class="inverted" src="/icons/glyphicon_ranking.png"/> Ranking</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li id="profile_photo" class="navbar-right"></li>
+            <li id="status" style="color: #e5e5e5" class="navbar-right">
+                Not logged in
+            </li>
+            <li class="navbar-right">
+                <fb:login-button scope="public_profile,user_friends,user_posts" onlogin="checkLoginState();">
+                </fb:login-button>
+            </li>
+        </ul>
+    </div>
+</nav>

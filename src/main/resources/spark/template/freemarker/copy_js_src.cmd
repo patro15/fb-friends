@@ -1,0 +1,1 @@
+xcopy js_src ..\\..\\..\\public\\js_src /I/Y

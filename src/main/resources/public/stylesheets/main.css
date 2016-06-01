@@ -1,0 +1,99 @@
+.inverted {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+.jumbotron {
+    background: #3a79d0;
+    color: white;
+    padding-bottom: 80px;
+}
+
+    .jumbotron .btn-primary {
+        background: #0005ff;
+        border-color: #001bee;
+    }
+
+        .jumbotron .btn-primary:hover {
+            background: #0004c2;
+        }
+
+    .jumbotron p {
+        color: #d9ccee;
+        max-width: 75%;
+        margin: 1em auto 2em;
+    }
+
+    .jumbotron .link {
+        color: #445887
+    }
+
+.navbar + .jumbotron {
+    margin-top: -20px;
+}
+
+.jumbotron .lang-logo {
+    display: block;
+    background: #B01302;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border: 2px solid white;
+}
+
+    .jumbotron .lang-logo img {
+        max-width: 100%;
+    }
+
+#profile_photo img {
+    width: 90%;
+    height: 90%;
+    max-height: 45px;
+    max-width: 45px;
+}
+
+li.navbar-right {
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-top: 3px;
+}
+
+.hidden {
+     display:none;
+}
+
+/* panel header */
+
+ul.header {
+	flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: #F5F5F5;
+}
+
+ul.header > li {
+	border-left: 1px solid;
+	border-bottom: 1px solid;
+	padding: 4px;
+	border-color: #D0D0D0;
+	min-width: 100px;
+	flex: 1;
+}
+
+ul.header > li:first-child {
+	border-left: 0;
+}
+
+#rank_table thead {
+    font-weight: bold;
+    background-color: #e6e6e6;
+}
+
+#rank_table tbody td:first-child {
+    background-color: #F5F5F5;
+}
